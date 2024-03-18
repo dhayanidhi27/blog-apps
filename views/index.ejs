@@ -1,0 +1,37 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Blog</title>
+    
+</head>
+<body>
+    <%- include('partials/header') %>
+    <h1>My Blog</h1>
+    <!-- Form for creating new posts -->
+    <form action="/create" method="POST">
+        <input type="text" name="title" placeholder="Title">
+        <textarea name="content" placeholder="Content"></textarea>
+        <button type="submit">Create Post</button>
+    </form>
+    <div>
+        <!-- Display posts dynamically -->
+        <% posts.forEach(post => { %>
+            <div>
+                <h2><%= post.title %></h2>
+                <p><%= post.content %></p>
+                <!-- views/index.ejs -->
+                <!-- Inside the forEach loop for displaying posts -->
+            <a href="/edit/<%= post.id %>">Edit</a> | <a href="/delete/<%= post.id %>">Delete</a>
+
+            </div>
+        <% }); %>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
